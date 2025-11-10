@@ -1,0 +1,56 @@
+﻿@model IEnumerable<UserDetails>
+
+@{
+    ViewData["Title"] = "Użytkownicy";
+    ViewData["PageTitle"] = "Lista użytkowników i ich ról";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h2 class="h5 mb-4 text-center">Użytkownicy i ich role</h2>
+
+        @if (!Model.Any())
+        {
+            <div class="alert alert-info text-center">Brak zarejestrowanych użytkowników.</div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th class="text-end">Akcje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.User.Email</td>
+                                <td>
+                                    @if (item.Roles.Any())
+                                    {
+                                        @string.Join(", ", item.Roles)
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Brak ról</span>
+                                    }
+                                </td>
+                                <td class="text-end">
+                                    <div class="btn-group btn-group-sm">
+                                        <a asp-action="EditRoles" asp-route-id="@item.User.Id" class="btn btn-outline-secondary">Edytuj</a>
+                                        <a asp-action="Delete" asp-route-userId="@item.User.Id" class="btn btn-outline-danger"
+                                           onclick="return confirm('Czy na pewno chcesz usunąć tego użytkownika?');">Usuń</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>

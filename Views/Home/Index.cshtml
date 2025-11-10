@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Strona główna";
+}
+
+<div class="text-center py-5">
+    <h1 class="display-5 fw-semibold mb-3">System Rezerwacji</h1>
+    <p class="lead text-muted mb-4">
+        Prosty system do zarządzania rezerwacjami, usługami oraz klientami.<br />
+        Zaloguj się, aby rozpocząć lub przejdź do panelu administracyjnego, jeśli masz odpowiednie uprawnienia.
+    </p>
+
+    <div class="d-flex justify-content-center gap-3">
+        <a asp-controller="Reservations" asp-action="Index" class="btn btn-primary btn-lg px-4">
+            Zobacz rezerwacje
+        </a>
+        <a asp-controller="Services" asp-action="Index" class="btn btn-outline-primary btn-lg px-4">
+            Usługi
+        </a>
+        @if (User.IsInRole("Admin"))
+        {
+            <a class="btn btn-outline-secondary btn-lg px-4 @Html.ActiveClass("Admin", null)" asp-controller="Admin" asp-action="AdminIndex">
+                Panel administratora
+            </a>
+        }
+    </div>
+</div>
+
+<hr class="my-5" />
+
+<div class="container">
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center">
+                    <h5 class="card-title fw-semibold mb-2">Zarządzanie klientami</h5>
+                    <p class="text-muted small">
+                        Dodawaj i edytuj informacje o klientach oraz śledź ich historię rezerwacji.
+                    </p>
+                    <a asp-controller="Customers" asp-action="Index" class="btn btn-outline-primary btn-sm">Przejdź</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center">
+                    <h5 class="card-title fw-semibold mb-2">Zarządzanie usługami</h5>
+                    <p class="text-muted small">
+                        Twórz, aktualizuj i przeglądaj usługi oferowane w systemie rezerwacji.
+                    </p>
+                    <a asp-controller="Services" asp-action="Index" class="btn btn-outline-primary btn-sm">Przejdź</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center">
+                    <h5 class="card-title fw-semibold mb-2">Panel administratora</h5>
+                    <p class="text-muted small">
+                        Dostęp do statystyk, zarządzania użytkownikami i przeglądu aktywności systemu.
+                    </p>
+                    <a class="btn btn-outline-secondary btn-sm @Html.ActiveClass("Admin", null)" asp-controller="Admin" asp-action="AdminIndex">Przejdź</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

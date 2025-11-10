@@ -1,0 +1,90 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    ViewData["PageTitle"] = "Dashboard rezerwacji";
+
+    var weeklyStats = ViewBag.WeeklyReservationByDay as IEnumerable<dynamic>;
+    var topServices = ViewBag.TopThreeServices as IEnumerable<dynamic>;
+}
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h2 class="h4 mb-4 text-center">Podsumowanie</h2>
+
+        <div class="row g-3 text-center">
+            <div class="col-md-3 col-sm-6">
+                <div class="card shadow-sm p-3 h-100">
+                    <h6 class="text-muted">Dzisiejsze rezerwacje</h6>
+                    <h2 class="text-primary">@ViewBag.TodayReservation</h2>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="card shadow-sm p-3 h-100">
+                    <h6 class="text-muted">Rezerwacje w tym tygodniu</h6>
+                    <h2 class="text-success">@ViewBag.WeeklyReservation</h2>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="card shadow-sm p-3 h-100">
+                    <h6 class="text-muted">Zarejestrowani użytkownicy</h6>
+                    <h2 class="text-primary">@ViewBag.RegisteredCustomers</h2>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="card shadow-sm p-3 h-100">
+                    <h6 class="text-muted">Aktywni użytkownicy</h6>
+                    <h2 class="text-success">@ViewBag.ActiveCustomers</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (topServices != null && topServices.Any())
+{
+    <div class="card mb-4">
+        <div class="card-body text-center">
+            <h4 class="mb-3">Najpopularniejsze usługi</h4>
+            <ul class="list-group list-group-flush">
+                @foreach (var s in topServices)
+                {
+                    <li class="list-group-item">
+                        <strong>@s.Name</strong> — @s.Count rezerwacji
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="mb-3 text-center">Rezerwacje w tym tygodniu</h4>
+
+        @if (weeklyStats == null || !weeklyStats.Any())
+        {
+            <div class="alert alert-info text-center">
+                Brak rezerwacji w tym tygodniu.
+            </div>
+        }
+        else
+        {
+            <table class="table table-striped align-middle text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Dzień</th>
+                        <th>Ilość rezerwacji</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var day in weeklyStats)
+                    {
+                        <tr>
+                            <td>@(((DateTime)day.Day).ToString("dddd, dd MMM"))</td>
+                            <td>@day.Count</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

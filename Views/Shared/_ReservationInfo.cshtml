@@ -1,0 +1,24 @@
+﻿@model System_Rezerwacji.Models.Reservation
+
+<dl class="row mb-0">
+    <dt class="col-sm-4 col-md-3 fw-semibold">
+        @Html.DisplayNameFor(m => m.ReservationDate)
+    </dt>
+    <dd class="col-sm-8 col-md-9">
+        @Model.ReservationDate.ToString("yyyy-MM-dd HH:mm")
+    </dd>
+
+    <dt class="col-sm-4 col-md-3 fw-semibold">
+        @Html.DisplayNameFor(m => m.Customer)
+    </dt>
+    <dd class="col-sm-8 col-md-9">
+        @Model.Customer.FullName
+    </dd>
+
+    <dt class="col-sm-4 col-md-3 fw-semibold">
+        @Html.DisplayNameFor(m => m.Service)
+    </dt>
+    <dd class="col-sm-8 col-md-9">
+        @Model.Service.Name
+    </dd>
+</dl>

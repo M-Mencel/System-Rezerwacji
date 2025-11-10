@@ -1,0 +1,39 @@
+﻿@model System_Rezerwacji.Models.Reservation
+@{
+    ViewData["Title"] = "Nowa rezerwacja";
+    ViewData["PageTitle"] = "Dodaj nową rezerwację";
+}
+
+<div class="card form-card">
+    <div class="card-body">
+        <form asp-action="Create" method="post" class="vstack gap-3">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+            <div>
+                <label asp-for="ReservationDate" class="form-label"></label>
+                <input asp-for="ReservationDate" class="form-control" />
+                <span asp-validation-for="ReservationDate" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label class="form-label">Email klienta</label>
+                <input type="text" class="form-control" value="@User.Identity?.Name" readonly />
+            </div>
+
+            <div>
+                <label asp-for="ServiceID" class="form-label"></label>
+                <select asp-for="ServiceID" class="form-select" asp-items="ViewBag.ServiceID"></select>
+                <span asp-validation-for="ServiceID" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex gap-2 justify-content-end mt-3">
+                <a asp-action="Index" class="btn btn-outline-secondary">Powrót</a>
+                <button type="submit" class="btn btn-primary">Zapisz</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

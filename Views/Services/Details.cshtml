@@ -1,0 +1,26 @@
+﻿@model System_Rezerwacji.Models.Service
+
+@{
+    ViewData["Title"] = "Szczegóły usługi";
+    ViewData["PageTitle"] = "Szczegóły usługi";
+}
+
+<div class="card form-card">
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-4 col-md-3 fw-semibold">@Html.DisplayNameFor(m => m.Name)</dt>
+            <dd class="col-sm-8 col-md-9">@Model.Name</dd>
+
+            <dt class="col-sm-4 col-md-3 fw-semibold">@Html.DisplayNameFor(m => m.Price)</dt>
+            <dd class="col-sm-8 col-md-9">@Model.Price zł</dd>
+
+            <dt class="col-sm-4 col-md-3 fw-semibold">@Html.DisplayNameFor(m => m.Duration)</dt>
+            <dd class="col-sm-8 col-md-9">@Model.Duration</dd>
+        </dl>
+    </div>
+
+    <div class="card-footer d-flex justify-content-end gap-2">
+        <a asp-action="Edit" asp-route-id="@Model.ServiceID" class="btn btn-outline-primary">Edytuj</a>
+        <a asp-action="Index" class="btn btn-secondary">Powrót</a>
+    </div>
+</div>

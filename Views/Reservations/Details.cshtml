@@ -1,0 +1,17 @@
+﻿@model System_Rezerwacji.Models.Reservation
+
+@{
+    ViewData["Title"] = "Szczegóły rezerwacji";
+    ViewData["PageTitle"] = "Szczegóły rezerwacji";
+}
+
+<div class="card form-card">
+    <div class="card-body">
+        <partial name="_ReservationInfo" model="Model" />
+    </div>
+
+    <div class="card-footer d-flex justify-content-end gap-2">
+        <a asp-action="Edit" asp-route-id="@Model.ReservationID" class="btn btn-outline-primary">Edytuj</a>
+        <a asp-action="Index" class="btn btn-secondary">Powrót</a>
+    </div>
+</div>

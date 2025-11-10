@@ -1,0 +1,56 @@
+﻿@model IEnumerable<System_Rezerwacji.Models.Reservation>
+@{
+    ViewData["Title"] = "Rezerwacje";
+    ViewData["PageTitle"] = "Lista rezerwacji";
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a asp-action="Manage" class="btn btn-outline-secondary btn-sm">Panel zarządzania</a>
+                }
+            </div>
+            <a asp-action="Create" class="btn btn-primary">Nowa rezerwacja</a>
+        </div>
+
+        @if (!Model.Any())
+        {
+            <div class="empty-state">Brak rezerwacji.</div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.ReservationDate)</th>
+                            <th>@Html.DisplayNameFor(model => model.Customer)</th>
+                            <th>@Html.DisplayNameFor(model => model.Service)</th>
+                            <th class="text-end">Akcje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.ReservationDate.ToString("yyyy-MM-dd HH:mm")</td>
+                                <td>@item.Customer.FullName</td>
+                                <td>@item.Service.Name</td>
+                                <td class="text-end">
+                                    <div class="btn-group btn-group-sm">
+                                        <a asp-action="Details" asp-route-id="@item.ReservationID" class="btn btn-outline-primary">Szczegóły</a>
+                                        <a asp-action="Edit" asp-route-id="@item.ReservationID" class="btn btn-outline-secondary">Edytuj</a>
+                                        <a asp-action="Delete" asp-route-id="@item.ReservationID" class="btn btn-outline-danger">Usuń</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>

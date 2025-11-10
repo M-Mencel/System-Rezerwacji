@@ -1,0 +1,71 @@
+﻿
+[Bb]in/
+[Oo]bj/
+out/
+artifacts/
+publish/
+dist/
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+
+# Visual Studio / VS Code / JetBrains Rider
+.vs/
+.vscode/
+.idea/
+
+# Visual Studio files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider / Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+
+
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.log
+*.tlog
+*.coverage
+*.coveragexml
+coverage/
+
+
+*.nupkg
+*.snupkg
+*.nuspec
+packages/
+!packages/*/packages.config
+.nuget/
+.dotnet/
+.nuget/packages/
+*.nuget.props
+*.nuget.targets
+
+
+# Do not expose sensitive configurations or local credentials
+appsettings.json
+appsettings.Development.json
+secrets.json
+
+
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+
+
+ScaffoldingReadMe.txt

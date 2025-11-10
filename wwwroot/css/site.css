@@ -1,0 +1,41 @@
+/* wwwroot/css/site.css */
+
+:root {
+    --content-max: 1100px;
+}
+.container {
+    max-width: var(--content-max);
+}
+.navbar .nav-link.active {
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.form-card {
+    max-width: 720px;
+    margin-inline: auto;
+}
+.form-control, .form-select {
+    padding-block: .6rem;
+}
+
+.form-label {
+    font-weight: 600;
+}
+
+.table thead th {
+    white-space: nowrap;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+.empty-state {
+    border: 1px dashed var(--bs-border-color);
+    border-radius: .5rem;
+    padding: 2rem;
+    text-align: center;
+    color: var(--bs-secondary-color);
+}

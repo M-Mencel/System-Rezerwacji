@@ -1,0 +1,33 @@
+﻿@model System_Rezerwacji.Models.Reservation
+
+@{
+    ViewData["Title"] = "Usuń rezerwację";
+    ViewData["PageTitle"] = "Usuń rezerwację";
+}
+
+<div class="card form-card border-danger-subtle">
+    <div class="card-body">
+        <div class="alert alert-warning">
+            <strong>Uwaga!</strong> Ta operacja usunie rezerwację na stałe.
+        </div>
+
+        <dl class="row mb-0">
+            <dt class="col-sm-4 col-md-3 fw-semibold">@Html.DisplayNameFor(m => m.ReservationDate)</dt>
+            <dd class="col-sm-8 col-md-9">@Model.ReservationDate.ToString("yyyy-MM-dd HH:mm")</dd>
+
+            <dt class="col-sm-4 col-md-3 fw-semibold">@Html.DisplayNameFor(m => m.Customer)</dt>
+            <dd class="col-sm-8 col-md-9">@Model.Customer.FullName</dd>
+
+            <dt class="col-sm-4 col-md-3 fw-semibold">@Html.DisplayNameFor(m => m.Service)</dt>
+            <dd class="col-sm-8 col-md-9">@Model.Service.Name</dd>
+        </dl>
+    </div>
+
+    <div class="card-footer d-flex justify-content-end gap-2">
+        <form asp-action="Delete" class="d-inline">
+            <input type="hidden" asp-for="ReservationID" />
+            <button type="submit" class="btn btn-danger">Usuń</button>
+        </form>
+        <a asp-action="Index" class="btn btn-outline-secondary">Anuluj</a>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+﻿@* Views/Shared/_Layout.cshtml *@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@(ViewData["Title"] != null ? ViewData["Title"] + " · " : "")System Rezerwacji</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/System_Rezerwacji.styles.css" asp-append-version="true" />
+</head>
+<body class="bg-light-subtle">
+    <header>
+        <nav class="navbar navbar-expand-md bg-body border-bottom shadow-sm sticky-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand fw-semibold" asp-area="" asp-controller="Home" asp-action="Index">
+                    System Rezerwacji
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent"
+                        aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navContent">
+                    <ul class="navbar-nav me-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link @Html.ActiveClass("Reservations", null)" asp-controller="Reservations" asp-action="Index">Rezerwacje</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @Html.ActiveClass("Customers", null)" asp-controller="Customers" asp-action="Index">Klienci</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @Html.ActiveClass("Services", null)" asp-controller="Services" asp-action="Index">Serwisy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @Html.ActiveClass("Admin", null)" asp-controller="Admin" asp-action="AdminIndex">AdminPanel</a>
+                        </li>
+                    </ul>
+
+                    <div class="d-flex gap-2 align-items-center">
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="py-4">
+        <div class="container">
+            @* Optional page header: set ViewData["PageTitle"] in your views *@
+            @if (ViewData["PageTitle"] is string pageTitle)
+            {
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h1 class="h4 mb-0">@pageTitle</h1>
+                    @RenderSection("PageActions", required: false)
+                </div>
+            }
+
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="border-top small text-body-secondary">
+        <div class="container d-flex flex-wrap gap-2 justify-content-between py-4">
+            <span>&copy; @DateTime.Now.Year — System_Rezerwacji</span>
+            <a class="link-secondary" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

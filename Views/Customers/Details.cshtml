@@ -1,0 +1,27 @@
+﻿@model System_Rezerwacji.Models.Customer
+
+@{
+    ViewData["Title"] = "Szczegóły klienta";
+    ViewData["PageTitle"] = "Szczegóły klienta";
+}
+
+<div class="card form-card">
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-4 col-md-3 fw-semibold">@Html.DisplayNameFor(m => m.FullName)</dt>
+            <dd class="col-sm-8 col-md-9">@Model.FullName</dd>
+
+            <dt class="col-sm-4 col-md-3 fw-semibold">@Html.DisplayNameFor(m => m.PhoneNumber)</dt>
+            <dd class="col-sm-8 col-md-9">@Model.PhoneNumber</dd>
+
+            <dt class="col-sm-4 col-md-3 fw-semibold">@Html.DisplayNameFor(m => m.Email)</dt>
+            <dd class="col-sm-8 col-md-9">@Model.Email</dd>
+        </dl>
+    </div>
+
+    <div class="card-footer d-flex justify-content-end gap-2">
+        <a asp-action="Edit" asp-route-id="@Model.CustomerID" class="btn btn-outline-primary">Edytuj</a>
+        <a asp-action="Index" class="btn btn-secondary">Powrót</a>
+    </div>
+</div>
+
