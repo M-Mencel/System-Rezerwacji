@@ -27,7 +27,9 @@
                             <th>@Html.DisplayNameFor(m => m.FullName)</th>
                             <th>@Html.DisplayNameFor(m => m.PhoneNumber)</th>
                             <th>@Html.DisplayNameFor(m => m.Email)</th>
+                            @if (User.IsInRole("Admin")){
                             <th class="text-end">Akcje</th>
+                            }
                         </tr>
                     </thead>
                     <tbody>
@@ -38,11 +40,14 @@
                                 <td>@item.PhoneNumber</td>
                                 <td>@item.Email</td>
                                 <td class="text-end">
-                                    <div class="btn-group btn-group-sm">
-                                        <a asp-action="Details" asp-route-id="@item.CustomerID" class="btn btn-outline-primary">Szczegóły</a>
-                                        <a asp-action="Edit" asp-route-id="@item.CustomerID" class="btn btn-outline-secondary">Edytuj</a>
-                                        <a asp-action="Delete" asp-route-id="@item.CustomerID" class="btn btn-outline-danger">Usuń</a>
-                                    </div>
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <div class="btn-group btn-group-sm">
+                                            <a asp-action="Details" asp-route-id="@item.CustomerID" class="btn btn-outline-primary">Szczegóły</a>
+                                            <a asp-action="Edit" asp-route-id="@item.CustomerID" class="btn btn-outline-secondary">Edytuj</a>
+                                            <a asp-action="Delete" asp-route-id="@item.CustomerID" class="btn btn-outline-danger">Usuń</a>
+                                        </div>
+                                    }
                                 </td>
                             </tr>
                         }
