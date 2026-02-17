@@ -30,10 +30,10 @@
                             <th>@Html.DisplayNameFor(model => model.ReservationDate)</th>
                             <th>@Html.DisplayNameFor(model => model.Customer)</th>
                             <th>@Html.DisplayNameFor(model => model.Service)</th>
-                            @if (User.IsInRole("Admin"))
-                            {
+                            @* @if (User.IsInRole("Admin"))
+                            { *@
                                 <th class="text-end">Akcje</th>
-                            }
+                           @*  } *@
                         </tr>
                     </thead>
                     <tbody>
@@ -44,14 +44,14 @@
                                 <td>@item.Customer.FullName</td>
                                 <td>@item.Service.Name</td>
                                 <td class="text-end">
-                                    @if (User.IsInRole("Admin"))
-                                    {
+                                  @*   @if (User.IsInRole("Admin"))
+                                    { *@
                                         <div class="btn-group btn-group-sm">
                                             <a asp-action="Details" asp-route-id="@item.ReservationID" class="btn btn-outline-primary">Szczegóły</a>
                                             <a asp-action="Edit" asp-route-id="@item.ReservationID" class="btn btn-outline-secondary">Edytuj</a>
                                             <a asp-action="Delete" asp-route-id="@item.ReservationID" class="btn btn-outline-danger">Usuń</a>
                                         </div>
-                                    }
+                                    @* } *@
                                 </td>
                             </tr>
                         }

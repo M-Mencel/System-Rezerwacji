@@ -14,7 +14,7 @@ using System_Rezerwacji.Models;
 
 namespace System_Rezerwacji.Controllers
 {
-    [Authorize(Roles = "Customer,Admin,Employee")]
+    /*[Authorize(Roles = "Customer,Admin,Employee")]*/
     public class ReservationsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -40,7 +40,7 @@ namespace System_Rezerwacji.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
-        [Authorize(Roles = "Admin,Employee")]
+        /*[Authorize(Roles = "Admin,Employee")]*/
         public async Task<IActionResult> Manage(string sortOrder)
         {
             var userEmail = User.Identity?.Name;
@@ -84,7 +84,7 @@ namespace System_Rezerwacji.Controllers
             return View(await Reservations.AsNoTracking().ToListAsync());
         }
         // GET: Reservations/Details/5
-        [Authorize(Roles = "Admin")]
+        /*[Authorize(Roles = "Admin")]*/
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -216,7 +216,7 @@ namespace System_Rezerwacji.Controllers
         }
 
         // GET: Reservations/Edit/5
-        [Authorize(Roles = "Admin")]
+        /*[Authorize(Roles = "Admin")]*/
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -235,11 +235,11 @@ namespace System_Rezerwacji.Controllers
         }
 
         // POST: Reservations/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+ 
+ 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        /*[Authorize(Roles = "Admin")]*/
         public async Task<IActionResult> Edit(int id, [Bind("ReservationID,ReservationDate,CustomerID,ServiceID")] Reservation reservation)
         {
             if (id != reservation.ReservationID)
@@ -273,7 +273,7 @@ namespace System_Rezerwacji.Controllers
         }
 
         // GET: Reservations/Delete/5
-        [Authorize(Roles = "Admin")]
+        /*[Authorize(Roles = "Admin")]*/
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -296,7 +296,7 @@ namespace System_Rezerwacji.Controllers
         // POST: Reservations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        /*[Authorize(Roles = "Admin")]*/
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var reservation = await _context.Reservations.FindAsync(id);
